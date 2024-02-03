@@ -1,4 +1,4 @@
-import { FC, ReactElement, cloneElement, useEffect } from 'react'
+import { FC, ReactElement, cloneElement } from 'react'
 import { createPortal } from 'react-dom'
 
 type ModalProps = {

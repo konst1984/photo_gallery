@@ -40,7 +40,7 @@ const useActions = () => {
         setError(false)
         getImages()
             .then((data) => setGalleryData(data))
-            .catch((err) => {
+            .catch(() => {
                 setError(true)
             })
             .finally(() => {

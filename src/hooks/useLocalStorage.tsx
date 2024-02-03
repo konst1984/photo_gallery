@@ -19,7 +19,7 @@ const useLocalStorage = (key: string) => {
         }
     }
 
-    const [value, setValue] = useState(getItem)
+    const [value] = useState(getItem)
 
     useEffect(() => {
         setItem(value)

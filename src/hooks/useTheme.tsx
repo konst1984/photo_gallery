@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
+import useLocalStorage from './useLocalStorage'
 
 export const useTheme = () => {
-    const [theme, setTheme] = useState('dark')
+    const [value, setItem] = useLocalStorage('theme')
+    const [theme, setTheme] = useState(value)
 
     const onLightTheme = () => {
         setTheme('light')
     }
 
     const onDarkTheme = () => {
-        console.log(theme)
         setTheme('dark')
     }
 
@@ -22,7 +23,7 @@ export const useTheme = () => {
 
     useEffect(() => {
         const isDark =
-            theme === 'dark' ||
+            theme === 'dark' &&
             window.matchMedia('(prefers-color-scheme: dark)').matches
         setTheme(isDark ? 'dark' : 'light')
         document.documentElement.className = theme
@@ -30,6 +31,7 @@ export const useTheme = () => {
 
     useEffect(() => {
         document.documentElement.className = theme
+        setItem(theme)
     }, [theme])
 
     return {

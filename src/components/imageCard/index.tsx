@@ -41,12 +41,12 @@ const ImageCard: FC<ImageCardProps> = ({
             style={style}
             className={`group ${
                 index === 0 && 'sm:col-span-2 sm:row-span-2'
-            } relative z-0 aspect-square overflow-hidden rounded-lg border border-gray-300 focus-within:border-4 focus-within:border-amber-400 ${className} transition-all duration-300`}
+            } relative z-0 aspect-square overflow-hidden rounded-lg border border-gray-300 focus-within:border-4 ${className} transition-all duration-300`}
         >
             <button
                 {...listeners}
                 {...attributes}
-                className={`absolute inset-0 z-50 bg-black opacity-0 transition-all duration-300 group-focus-within:opacity-40 group-hover:opacity-40 
+                className={`focus-мшышиду:border-amber-400 absolute inset-0 z-50 bg-black opacity-0 transition-all duration-300 group-focus-within:opacity-40 group-hover:opacity-40
           ${isSelected && '!opacity-0'}`}
             />
             <button

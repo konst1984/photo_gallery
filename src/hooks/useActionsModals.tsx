@@ -12,7 +12,7 @@ export default function useActionsModals() {
     const handleOpenModal = (
         e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => {
-        setModalOpen((e.currentTarget as HTMLElement).id)
+        setModalOpen((e.currentTarget as HTMLElement).dataset.id!)
     }
 
     const handleCloseModalClick = () => {

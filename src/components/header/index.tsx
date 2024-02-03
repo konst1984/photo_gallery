@@ -27,7 +27,7 @@ const Header: FC<IHeader> = ({ handleOpenModal, selectedItems }) => {
                 <button
                     className="hover:bg-gary-100 focus-visible:bg-gary-100 left-2 top-2 flex aspect-square h-16 w-16 flex-col items-center justify-center rounded-full border-2 border-dashed border-gray-200 p-2 text-sm transition-colors duration-300 hover:border-solid hover:border-green-400 hover:text-green-400 focus-visible:border-solid focus-visible:border-green-400 focus-visible:text-green-400"
                     onClick={handleOpenModal}
-                    id="addImage"
+                    data-id="addImage"
                     title="Add image"
                 >
                     <ImageIcon />
@@ -35,7 +35,7 @@ const Header: FC<IHeader> = ({ handleOpenModal, selectedItems }) => {
                 {selectedItems.length > 0 ? (
                     <button
                         onClick={handleOpenModal}
-                        id="deleteImage"
+                        data-id="deleteImage"
                         title="Delete selected images"
                         className="left-20 top-2 z-[100] flex h-16 w-16 items-center justify-center rounded-full hover:text-red-500 hover:outline hover:outline-red-400 focus-visible:text-red-400 focus-visible:outline"
                     >

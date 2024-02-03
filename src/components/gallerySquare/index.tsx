@@ -9,6 +9,7 @@ import Preloader from '../preloader'
 
 interface IGallerySquare {
     isLoading: boolean
+    isError: boolean
     galleryData: ImageGalleryProps[]
     handleSelectItem: (id: string | number) => void
     activeItem: ImageGalleryProps | null
@@ -23,6 +24,7 @@ const GallerySquare: FC<IGallerySquare> = ({
     activeItem,
     setGalleryData,
     setActiveItem,
+    isError,
 }) => {
     const { handleDragEnd, handleDragStart, sensors } = useActionsDnD(
         galleryData,
@@ -33,7 +35,13 @@ const GallerySquare: FC<IGallerySquare> = ({
     if (isLoading) {
         return <Preloader />
     }
-
+    if (isError) {
+        return (
+            <h1 className="text-clamp uppercase text-red-500">
+                Something went wrong!
+            </h1>
+        )
+    }
     return (
         <>
             {galleryData.length ? (
@@ -43,7 +51,7 @@ const GallerySquare: FC<IGallerySquare> = ({
                     onDragStart={handleDragStart}
                     onDragEnd={handleDragEnd}
                 >
-                    <div className="bg-secondary mx-auto mb-5 grid max-w-[90%] gap-8 rounded-2xl p-8 sm:grid-cols-2 md:grid-cols-5">
+                    <div className="mx-auto mb-5 grid max-w-[90%] gap-8 rounded-2xl bg-secondary p-8 sm:grid-cols-2 md:grid-cols-5">
                         <SortableContext
                             items={galleryData}
                             strategy={rectSortingStrategy}

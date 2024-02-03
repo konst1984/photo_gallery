@@ -64,11 +64,12 @@ const ModalAddImage: FC<IModalAddImage> = ({
                         </button>
                     </div>
                 </form>
-                <CloseIcon
+                <button
                     onClick={handleCloseModalClick}
-                    width={31}
-                    className="absolute right-4 top-4 cursor-pointer text-red-600 transition-all hover:text-red-700"
-                />
+                    className="absolute right-4 top-4 flex cursor-pointer items-center justify-center bg-transparent fill-transparent text-red-600 transition-all hover:scale-125 hover:fill-red-600 hover:text-white focus-visible:scale-125 focus-visible:fill-red-600 focus-visible:text-white active:scale-100"
+                >
+                    <CloseIcon width={31} />
+                </button>
             </>
         </Modal>
     )

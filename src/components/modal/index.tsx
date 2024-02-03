@@ -6,6 +6,7 @@ type ModalProps = {
     nameModal: string
     handleClose: () => void
     modalId?: string
+    style?: string
 }
 
 export const Modal: FC<ModalProps> = ({
@@ -26,11 +27,13 @@ export const Modal: FC<ModalProps> = ({
             {createPortal(
                 <>
                     <div
-                        className="fixed inset-0 z-[999] flex items-center justify-center overflow-hidden bg-[var(--bg-color)] transition-all duration-300 ease-in-out"
+                        className="fixed inset-0 z-[1001] flex items-center justify-center overflow-hidden bg-[var(--bg-color)] transition-all duration-300 ease-in-out"
                         style={stl}
                         onClick={handleClose}
                     />
-                    <div className="fixed left-1/2 top-1/2 z-[1000] w-[90%] min-w-[300px] max-w-[680px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-slate-50 p-2 font-semibold text-black">
+                    <div
+                        className={`fixed left-1/2 top-1/2 z-[1002] w-[90%] min-w-[300px] max-w-[680px] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-slate-50 p-2 font-semibold text-black`}
+                    >
                         {cloneElement(children)}
                     </div>
                 </>,

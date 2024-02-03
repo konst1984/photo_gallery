@@ -2,7 +2,7 @@ import axios from 'axios'
 import { ImageGalleryProps } from '../data'
 
 const axiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL,
+    baseURL: 'https://my-json-server-85wu.onrender.com/',
 })
 
 export const getImages = async () => {

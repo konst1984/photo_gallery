@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
-import { ImageGalleryProps } from './src/data'
-import { deleteImages, getImages } from './src/api/api'
+import { ImageGalleryProps } from '../data'
+import { deleteImages, getImages } from '../api/api'
 
 const useActions = () => {
     const [galleryData, setGalleryData] = useState<ImageGalleryProps[] | []>([])
     const [activeItem, setActiveItem] = useState<ImageGalleryProps | null>(null)
     const [isLoading, setLoading] = useState<boolean>(false)
+    const [isError, setError] = useState<boolean>(false)
 
     const handleSelectItem = (id: string | number) => {
         const newGalleryData = galleryData.map((imageItem) => {
@@ -36,9 +37,12 @@ const useActions = () => {
 
     useEffect(() => {
         setLoading(true)
+        setError(false)
         getImages()
             .then((data) => setGalleryData(data))
-            .catch((err) => {})
+            .catch((err) => {
+                setError(true)
+            })
             .finally(() => {
                 setLoading(false)
             })
@@ -52,6 +56,7 @@ const useActions = () => {
         galleryData,
         activeItem,
         isLoading,
+        isError,
     }
 }
 

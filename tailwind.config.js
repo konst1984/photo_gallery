@@ -3,6 +3,9 @@ export default {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
     theme: {
         extend: {
+            fontSize: {
+                clamp: 'clamp(1rem, 5vw, 3rem)',
+            },
             keyframes: {
                 onLightTheme: {
                     '0%': { transform: 'translateX(0%))', opacity: 0 },

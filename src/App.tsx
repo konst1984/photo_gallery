@@ -1,4 +1,4 @@
-import useActions from '../useActionsImage'
+import useActions from './hooks/useActionsImage'
 import useActionsModals from './hooks/useActionsModals'
 import GallerySquare from './components/gallerySquare'
 import Header from './components/header'
@@ -14,6 +14,7 @@ const App = () => {
         activeItem,
         setActiveItem,
         isLoading,
+        isError,
     } = useActions()
 
     const selectedItems = galleryData.filter((item) => item.isSelected)
@@ -25,7 +26,7 @@ const App = () => {
         <div className="min-h-sreen">
             <div className="flex flex-col items-center">
                 <div className="my-8 grid max-w-5xl divide-y divide-dashed rounded-lg shadow">
-                    <h1 className="text-2xl uppercase">images gallery</h1>
+                    <h1 className="text-clamp p-2 uppercase">images gallery</h1>
                 </div>
 
                 <Header
@@ -35,6 +36,7 @@ const App = () => {
 
                 <GallerySquare
                     isLoading={isLoading}
+                    isError={isError}
                     galleryData={galleryData}
                     handleSelectItem={handleSelectItem}
                     activeItem={activeItem}

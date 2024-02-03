@@ -22,10 +22,10 @@ const useLocalStorage = (key: string) => {
     const [value, setValue] = useState(getItem)
 
     useEffect(() => {
-        setItem(key)
+        setItem(value)
     }, [value])
 
-    return [value, setValue]
+    return [value, setItem]
 }
 
 export default useLocalStorage

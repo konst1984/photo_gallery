@@ -18,19 +18,19 @@ const Menu = () => {
         () => [
             {
                 icon: <LightThemeIcon />,
-                title: 'light',
+                title: 'light theme',
                 animate: 'animate-onLightTheme',
                 action: onLightTheme,
             },
             {
                 icon: <DarkThemeIcon />,
-                title: 'dark',
+                title: 'dark theme',
                 animate: 'animate-onDarkTheme',
                 action: onDarkTheme,
             },
             {
                 icon: <SystemThemeIcon />,
-                title: 'system',
+                title: 'system theme',
                 animate: 'animate-onSystemTheme',
                 action: onSystemTheme,
             },
@@ -62,6 +62,7 @@ const Menu = () => {
                 ref={menuRef}
                 onClick={handleToggleMenu}
                 title="Toggle theme"
+                aria-label="Toggle theme"
                 className={`right-2 top-2 z-[100] flex h-16 w-16 cursor-pointer items-center justify-center overflow-hidden rounded-full p-8 outline-2 hover:outline hover:outline-blue-400 focus-visible:outline focus-visible:outline-blue-400`}
             >
                 <span className="grid w-full items-center justify-center">

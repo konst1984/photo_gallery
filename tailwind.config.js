@@ -11,8 +11,8 @@ export default {
             },
             keyframes: {
                 showOpacity: {
-                    '0%': { opacity: 0 },
-                    '100%': { opactity: 1 },
+                    '0%': { scale: 0, opacity: 0 },
+                    '100%': { scale: 1, opacity: 1 },
                 },
                 onDarkTheme: {
                     '0%': { transform: 'translateX(0%))', opacity: 0 },
@@ -28,7 +28,7 @@ export default {
                 },
             },
             animation: {
-                showOpacity: 'showOpacity 0.7s linear',
+                showOpacity: 'showOpacity 0.3s linear',
                 onLightTheme: 'onLightTheme 0.3s ease-in-out forwards',
                 onDarkTheme: 'onDarkTheme 0.3s ease-in-out 0.15s forwards',
                 onSystemTheme: 'onSystemTheme 0.3s ease-in-out 0.3s forwards',

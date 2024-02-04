@@ -17,6 +17,7 @@ const MenuItemButton: FC<IMenuItemButton> = ({
         <button
             onClick={onClickHandler}
             title={title}
+            aria-label={title}
             className={`fixed ${styles} z-[100] flex cursor-pointer items-center justify-center overflow-hidden rounded-full outline-2 hover:outline hover:outline-blue-400 focus-visible:outline focus-visible:outline-blue-400`}
         >
             <span className="grid w-full items-center justify-center">

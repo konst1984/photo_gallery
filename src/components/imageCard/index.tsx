@@ -77,20 +77,20 @@ const ImageCard: FC<ImageCardProps> = ({
                 </button>
 
                 <div
-                    className={`relative flex h-full w-full items-center justify-center  ${
+                    className={`relative flex h-full w-full items-center justify-center bg-gray-500  ${
                         isSelected && 'opacity-60'
                     }`}
                 >
-                    <span className="absolute -z-0 block">Loading...</span>
+                    <span className="animate-showOpacity absolute inset-0 -z-0 bg-[url('../../../public/images/img-loading.webp')] bg-cover bg-center bg-no-repeat"></span>
                     <img
                         src={slug}
                         alt=""
-                        className="relative z-10 block h-full w-full object-cover"
+                        className="relative z-10 block h-full w-full object-cover italic"
                         loading="lazy"
                         width="640"
                         height="360"
                         onError={(e) =>
-                            (e.currentTarget.src = 'images/err-image.jpg')
+                            (e.currentTarget.src = 'images/err-image.webp')
                         }
                     />
                 </div>

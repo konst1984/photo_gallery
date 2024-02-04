@@ -14,7 +14,7 @@ const useOutsideClick = (
     useEffect(() => {
         const handleCLick = (e: Event) => {
             if (ref.current && !ref.current.contains(e.target as HTMLElement)) {
-                setTimeout(() => callbackRef.current(), 500)
+                setTimeout(() => callbackRef.current(), 300)
             }
         }
 

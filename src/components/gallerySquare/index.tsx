@@ -51,7 +51,7 @@ const GallerySquare: FC<IGallerySquare> = ({
                     onDragStart={handleDragStart}
                     onDragEnd={handleDragEnd}
                 >
-                    <div className="mx-auto mb-5 grid max-w-[90%] gap-8 rounded-2xl bg-secondary p-8 sm:grid-cols-2 md:grid-cols-5">
+                    <div className="animate-showOpacity mx-auto mb-5 grid max-w-[90%] gap-8 rounded-2xl bg-secondary p-8 sm:grid-cols-2 md:grid-cols-5">
                         <SortableContext
                             items={galleryData}
                             strategy={rectSortingStrategy}

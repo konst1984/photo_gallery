@@ -81,7 +81,7 @@ const ImageCard: FC<ImageCardProps> = ({
                         isSelected && 'opacity-60'
                     }`}
                 >
-                    <span className="animate-showOpacity absolute inset-0 -z-0 bg-[url('../../../public/images/img-loading.webp')] bg-cover bg-center bg-no-repeat"></span>
+                    <span className="absolute inset-0 -z-0 scale-50 animate-showOpacity bg-[url('/images/loading-svgrepo-com.svg')] bg-cover bg-center bg-no-repeat"></span>
                     <img
                         src={slug}
                         alt=""

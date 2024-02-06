@@ -1,17 +1,20 @@
 import { FC } from 'react'
-import useScrollDirection from '../../hooks/useScrollDirection'
-import Menu from '../menu'
+
 import ImageIcon from '../../assets/icons/ImageIcon'
 import { ImageGalleryProps } from '../../data'
+import useGalleryContext from '../../hooks/useGalleryContext'
+import useScrollDirection from '../../hooks/useScrollDirection'
+import Menu from '../menu'
 
 interface IHeader {
     handleOpenModal: (
         e: React.MouseEvent<HTMLButtonElement, MouseEvent>
     ) => void
-    selectedItems: ImageGalleryProps[]
 }
-const Header: FC<IHeader> = ({ handleOpenModal, selectedItems }) => {
+const Header: FC<IHeader> = ({ handleOpenModal }) => {
+    const { selectedItems } = useGalleryContext()
     const scrollDirection = useScrollDirection()
+
     const bgColor =
         scrollDirection === 'no-paint' || scrollDirection === 'hide'
             ? 'bg-transparent'
@@ -32,6 +35,7 @@ const Header: FC<IHeader> = ({ handleOpenModal, selectedItems }) => {
                 >
                     <ImageIcon />
                 </button>
+
                 {selectedItems.length > 0 ? (
                     <button
                         onClick={handleOpenModal}

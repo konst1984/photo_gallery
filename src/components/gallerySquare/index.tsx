@@ -1,31 +1,23 @@
-import { DndContext, DragOverlay, closestCenter } from '@dnd-kit/core'
-import { SortableContext, rectSortingStrategy } from '@dnd-kit/sortable'
-import ImageOverlayCard from '../ImageOverlayCard'
-import ImageCard from '../imageCard'
+import { FC } from 'react'
+import { closestCenter,DndContext, DragOverlay } from '@dnd-kit/core'
+import { rectSortingStrategy,SortableContext } from '@dnd-kit/sortable'
+
 import useActionsDnD from '../../hooks/useActionDnd'
-import { Dispatch, FC, SetStateAction } from 'react'
-import { ImageGalleryProps } from '../../data'
+import useGalleryContext from '../../hooks/useGalleryContext'
+import ImageCard from '../imageCard'
+import ImageOverlayCard from '../ImageOverlayCard'
 import Preloader from '../preloader'
 
-interface IGallerySquare {
-    isLoading: boolean
-    isError: boolean
-    galleryData: ImageGalleryProps[]
-    handleSelectItem: (id: string | number) => void
-    activeItem: ImageGalleryProps | null
-    setGalleryData: Dispatch<SetStateAction<ImageGalleryProps[]>>
-    setActiveItem: Dispatch<SetStateAction<ImageGalleryProps | null>>
-}
+const GallerySquare: FC = () => {
+    const {
+        galleryData,
+        setGalleryData,
+        setActiveItem,
+        isError,
+        isLoading,
+        activeItem,
+    } = useGalleryContext()
 
-const GallerySquare: FC<IGallerySquare> = ({
-    isLoading,
-    galleryData,
-    handleSelectItem,
-    activeItem,
-    setGalleryData,
-    setActiveItem,
-    isError,
-}) => {
     const { handleDragEnd, handleDragStart, sensors } = useActionsDnD(
         galleryData,
         setGalleryData,
@@ -51,7 +43,7 @@ const GallerySquare: FC<IGallerySquare> = ({
                     onDragStart={handleDragStart}
                     onDragEnd={handleDragEnd}
                 >
-                    <div className="animate-showOpacity mx-auto mb-5 grid max-w-[90%] gap-8 rounded-2xl bg-secondary p-8 sm:grid-cols-2 md:grid-cols-5">
+                    <div className="mx-auto mb-5 grid max-w-[90%] animate-showOpacity gap-8 rounded-2xl bg-secondary p-8 sm:grid-cols-2 md:grid-cols-5">
                         <SortableContext
                             items={galleryData}
                             strategy={rectSortingStrategy}
@@ -62,7 +54,6 @@ const GallerySquare: FC<IGallerySquare> = ({
                                     slug={imageItem.slug}
                                     id={imageItem.id}
                                     isSelected={imageItem.isSelected}
-                                    onClick={handleSelectItem}
                                 />
                             ))}
                         </SortableContext>

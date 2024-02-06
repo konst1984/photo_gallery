@@ -1,21 +1,21 @@
 import React, { FC } from 'react'
-import Modal from '../modal'
-import CloseIcon from '../../assets/icons/CloseIcon'
-import { ImageGalleryProps } from '../../data'
 import { nanoid } from 'nanoid'
+
 import { addImage } from '../../api/api'
+import CloseIcon from '../../assets/icons/CloseIcon'
+import useGalleryContext from '../../hooks/useGalleryContext'
+import Modal from '../modal'
 
 interface IModalAddImage {
     handleCloseModalClick: () => void
-    setGalleryData: React.Dispatch<React.SetStateAction<ImageGalleryProps[]>>
     nameModal: string
 }
 
 const ModalAddImage: FC<IModalAddImage> = ({
-    setGalleryData,
     handleCloseModalClick,
     nameModal,
 }) => {
+    const { setGalleryData } = useGalleryContext()
     const handleImageSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault()
 

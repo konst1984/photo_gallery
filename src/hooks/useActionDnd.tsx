@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react'
 import {
     DragEndEvent,
     DragStartEvent,
@@ -8,8 +9,8 @@ import {
     useSensors,
 } from '@dnd-kit/core'
 import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
+
 import { ImageGalleryProps } from '../data'
-import { Dispatch, SetStateAction } from 'react'
 
 const useActionsDnD = (
     galleryData: ImageGalleryProps[],

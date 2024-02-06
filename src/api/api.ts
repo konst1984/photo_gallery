@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 import { ImageGalleryProps } from '../data'
 
 const axiosInstance = axios.create({

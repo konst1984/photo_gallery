@@ -1,5 +1,6 @@
-import { FC, ReactElement, cloneElement, useEffect } from 'react'
+import { cloneElement, FC, ReactElement, useEffect } from 'react'
 import { createPortal } from 'react-dom'
+
 import { setOverflowHidden } from '../../utils/setOverflowHidden'
 
 type ModalProps = {

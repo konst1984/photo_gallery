@@ -1,17 +1,18 @@
 import { FC, useEffect, useRef } from 'react'
+
+import useGalleryContext from '../../hooks/useGalleryContext'
 import Modal from '../modal'
 
 interface IModalDeleteImage {
     handleCloseModalClick: () => void
-    handleDeleteItems: () => void
     nameModal: string
 }
 
 const ModalDeleteImage: FC<IModalDeleteImage> = ({
     handleCloseModalClick,
-    handleDeleteItems,
     nameModal,
 }) => {
+    const { handleDeleteItems } = useGalleryContext()
     const ButtonRef = useRef<HTMLButtonElement | null>(null)
     const handleDeleteImages = () => {
         handleDeleteItems()

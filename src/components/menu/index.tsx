@@ -1,12 +1,13 @@
-import { useMemo, useRef, useState } from 'react'
-import MenuItemButton from '../menuItemButton'
-import LightThemeIcon from '../../assets/icons/LightThemeIcon'
-import DarkThemeIcon from '../../assets/icons/DarkThemeIcon'
-import SystemThemeIcon from '../../assets/icons/SystemThemeIcon'
-import { useTheme } from '../../hooks/useTheme'
-import useOutsideClick from '../../hooks/useOutsideClick'
+import { memo, useMemo, useRef, useState } from 'react'
 
-const Menu = () => {
+import DarkThemeIcon from '../../assets/icons/DarkThemeIcon'
+import LightThemeIcon from '../../assets/icons/LightThemeIcon'
+import SystemThemeIcon from '../../assets/icons/SystemThemeIcon'
+import useOutsideClick from '../../hooks/useOutsideClick'
+import { useTheme } from '../../hooks/useTheme'
+import MenuItemButton from '../menuItemButton'
+
+const Menu = memo(() => {
     const [openMenu, setOpenMenu] = useState<boolean>(false)
     const { onLightTheme, onDarkTheme, onSystemTheme } = useTheme()
 
@@ -89,6 +90,6 @@ const Menu = () => {
             </button>
         </>
     )
-}
+})
 
 export default Menu

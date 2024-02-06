@@ -1,9 +1,9 @@
 import { FC } from 'react'
+
 import { ImageGalleryProps } from '../../data'
 
 interface ImageOverlayCardProps extends Partial<ImageGalleryProps> {
     className?: string
-    onClick?: (id: string | number) => void
 }
 
 const ImageOverlayCard: FC<ImageOverlayCardProps> = ({ className, slug }) => {

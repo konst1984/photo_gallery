@@ -1,7 +1,8 @@
 import { FC, useEffect, useRef } from 'react'
+
+import { useKeydown } from '../../hooks/useKeyDown'
 import useOutsideClick from '../../hooks/useOutsideClick'
 import { setOverflowHidden } from '../../utils/setOverflowHidden'
-import { useKeydown } from '../../hooks/useKeyDown'
 
 interface IImageZoom {
     slug: string

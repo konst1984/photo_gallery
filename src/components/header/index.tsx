@@ -13,7 +13,6 @@ interface IHeader {
 const Header: FC<IHeader> = ({ handleOpenModal }) => {
     const { selectedItems } = useGalleryContext()
     const scrollDirection = useScrollDirection()
-
     const bgColor =
         scrollDirection === 'no-paint' || scrollDirection === 'hide'
             ? 'bg-transparent'

@@ -1,27 +1,27 @@
-import { FC, useEffect, useRef } from 'react'
+import { FC, useEffect, useRef } from 'react';
 
-import useGalleryContext from '../../hooks/useGalleryContext'
-import Modal from '../modal'
+import useGalleryContext from '../../context/useGalleryContext';
+import Modal from '../modal';
 
 interface IModalDeleteImage {
-    handleCloseModalClick: () => void
-    nameModal: string
+    handleCloseModalClick: () => void;
+    nameModal: string;
 }
 
 const ModalDeleteImage: FC<IModalDeleteImage> = ({
     handleCloseModalClick,
     nameModal,
 }) => {
-    const { handleDeleteItems } = useGalleryContext()
-    const ButtonRef = useRef<HTMLButtonElement | null>(null)
+    const { handleDeleteItems } = useGalleryContext();
+    const ButtonRef = useRef<HTMLButtonElement | null>(null);
     const handleDeleteImages = () => {
-        handleDeleteItems()
-        handleCloseModalClick()
-    }
+        handleDeleteItems();
+        handleCloseModalClick();
+    };
 
     useEffect(() => {
-        ButtonRef.current?.focus()
-    }, [nameModal])
+        ButtonRef.current?.focus();
+    }, [nameModal]);
 
     return (
         <Modal
@@ -40,14 +40,14 @@ const ModalDeleteImage: FC<IModalDeleteImage> = ({
                             onClick={handleDeleteImages}
                             className="rounded-lg bg-red-400 px-4  py-2 uppercase outline-2 duration-300 hover:scale-110 focus:outline focus-visible:scale-110"
                         >
-                            Delete
+                            Yes
                         </button>
                         <button
                             ref={ButtonRef}
                             onClick={handleCloseModalClick}
                             className="rounded-lg bg-blue-400 px-4  py-2 uppercase outline-2 duration-300 hover:scale-110 focus:scale-110 focus:outline focus-visible:scale-110"
                         >
-                            Cancel
+                            No
                         </button>
                     </div>
                     <p className="py-2 text-lg text-gray-500">
@@ -57,7 +57,7 @@ const ModalDeleteImage: FC<IModalDeleteImage> = ({
                 </>
             </div>
         </Modal>
-    )
-}
+    );
+};
 
-export default ModalDeleteImage
+export default ModalDeleteImage;

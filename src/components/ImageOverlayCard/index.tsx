@@ -1,6 +1,6 @@
-import { FC } from 'react'
+import { FC } from 'react';
 
-import { ImageGalleryProps } from '../../data'
+import { ImageGalleryProps } from '../../data';
 
 interface ImageOverlayCardProps extends Partial<ImageGalleryProps> {
     className?: string
@@ -17,7 +17,7 @@ const ImageOverlayCard: FC<ImageOverlayCardProps> = ({ className, slug }) => {
                 className="block h-full w-full object-cover"
             />
         </div>
-    )
-}
+    );
+};
 
-export default ImageOverlayCard
+export default ImageOverlayCard;

@@ -1,30 +1,40 @@
-import { FC, useEffect, useRef } from 'react'
+import { FC, useEffect, useRef } from 'react';
 
-import { useKeydown } from '../../hooks/useKeyDown'
-import useOutsideClick from '../../hooks/useOutsideClick'
-import { setOverflowHidden } from '../../utils/setOverflowHidden'
+import CloseIcon from '../../assets/icons/CloseIcon';
+import MinusIcon from '../../assets/icons/MinusIcon';
+import PlusIcon from '../../assets/icons/PlusIcon';
+import useImageZoomScaleAndMove from '../../hooks/useImageZoom';
+import { useKeydown } from '../../hooks/useKeyDown';
+import { setOverflowHidden } from '../../utils/setOverflowHidden';
 
 interface IImageZoom {
-    slug: string
-    setZoom: (value: boolean) => void
-    state: boolean
+    slug: string;
+    setZoom: (value: boolean) => void;
+    state: boolean;
 }
 
 const ImageZoom: FC<IImageZoom> = ({ slug, setZoom, state }) => {
-    const imageRef = useRef<HTMLImageElement | null>(null)
+    const ImageRef = useRef<HTMLImageElement | null>(null);
+    const ImageWrapperRef = useRef<HTMLDivElement | null>(null);
+    const ButtonRef = useRef<HTMLButtonElement | null>(null);
 
     const handleZoom = () => {
-        setZoom(false)
-    }
+        setZoom(false);
+    };
 
-    useOutsideClick(imageRef, handleZoom, state)
-    useKeydown('Escape', handleZoom, state)
+    useKeydown('Escape', handleZoom, state);
 
+    const { handleScaleIn, handleScaleOut, position, scale, setPosition } =
+        useImageZoomScaleAndMove(ImageRef, state);
+
+    // Hidden scroll
     useEffect(() => {
-        setOverflowHidden('html', state)
-    }, [state])
+        ButtonRef.current?.focus();
+        setOverflowHidden('html', state);
+        setPosition({ x: 0, y: 0 });
+    }, [state]);
 
-    if (!state) return null
+    if (!state || !slug) return null;
 
     return (
         <div className="fixed inset-0 z-[1002] flex h-full w-full items-center justify-center bg-gray-900">
@@ -34,17 +44,43 @@ const ImageZoom: FC<IImageZoom> = ({ slug, setZoom, state }) => {
                 src={slug}
             />
             <div
-                ref={imageRef}
-                className="max-w-widthZoomImage relative mx-0 my-auto max-h-screen overflow-hidden"
+                ref={ImageWrapperRef}
+                className="relative mx-0 my-auto max-h-screen w-auto max-w-widthZoomImage overflow-hidden"
             >
                 <img
+                    ref={ImageRef}
                     alt=""
-                    className="relative block h-auto max-h-[90dvh] w-auto max-w-full object-contain"
+                    style={{
+                        transform: `scale(${scale}) translate(${position.x}px, ${position.y}px)`,
+                    }}
+                    draggable={false}
+                    className={`transition-scale duration-250 relative m-auto block h-auto max-h-[90dvh] w-auto max-w-full cursor-move object-contain`}
                     src={slug}
                 />
             </div>
+            <div className="absolute left-2 top-2 z-10 flex flex-col gap-2 text-xl">
+                <button
+                    ref={ButtonRef}
+                    className="grid h-12 w-12 place-content-center rounded-full p-2 outline-2 duration-300 hover:scale-110 hover:invert focus:scale-110 focus:outline focus:invert focus-visible:scale-110 focus-visible:invert"
+                    onClick={handleScaleIn}
+                >
+                    <PlusIcon width={48} />
+                </button>
+                <button
+                    className="grid h-12 w-12 place-content-center rounded-full p-2 outline-2 duration-300 hover:scale-110 hover:invert focus:scale-110 focus:outline focus:invert focus-visible:scale-110 focus-visible:invert"
+                    onClick={handleScaleOut}
+                >
+                    <MinusIcon width={48} />
+                </button>
+            </div>
+            <button
+                className="absolute right-2 top-2 grid h-12 w-12 place-content-center rounded-full p-2 outline-2 duration-300 hover:scale-110 hover:invert focus:scale-110 focus:outline focus:invert focus-visible:scale-110 focus-visible:invert"
+                onClick={handleZoom}
+            >
+                <CloseIcon fill="none" width={48} />
+            </button>
         </div>
-    )
-}
+    );
+};
 
-export default ImageZoom
+export default ImageZoom;

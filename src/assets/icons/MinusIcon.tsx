@@ -1,4 +1,7 @@
-const ZoomIcon = () => {
+import { SVGProps } from "react";
+
+const MinusIcon =({ width = '24', ...props }: SVGProps<SVGSVGElement>) => {
+  const height = ((Number(width) * 24) / 24).toString();
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -6,15 +9,16 @@ const ZoomIcon = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="h-6 w-6"
+            width={width}
+            height={height}
         >
             <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607ZM10.5 7.5v6m3-3h-6"
+                d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
             />
         </svg>
     );
 };
 
-export default ZoomIcon;
+export default MinusIcon;

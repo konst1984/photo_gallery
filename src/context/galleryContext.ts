@@ -1,19 +1,17 @@
-import { createContext,Dispatch, SetStateAction } from 'react'
+import { createContext, Dispatch, SetStateAction } from 'react';
 
-import { ImageGalleryProps } from '../data'
+import { ImageGalleryProps } from '../data';
 
 interface IGalleryContext {
-    isLoading: boolean
-    isError: boolean
-    galleryData: ImageGalleryProps[]
-    handleDeleteItems: () => void
-    handleSelectItem: (id: string | number) => void
-    activeItem: ImageGalleryProps | null
-    setGalleryData: Dispatch<SetStateAction<ImageGalleryProps[]>>
-    setActiveItem: Dispatch<SetStateAction<ImageGalleryProps | null>>
-    selectedItems: ImageGalleryProps[]
+    isLoading: boolean;
+    isError: boolean;
+    galleryData: ImageGalleryProps[];
+    handleDeleteItems: () => void;
+    handleSelectItem: (id: string | number) => void;
+    setGalleryData: Dispatch<SetStateAction<ImageGalleryProps[]>>;
+    selectedItems: ImageGalleryProps[];
 }
 
-export const GalleryContext = createContext<IGalleryContext | null>(null)
+export const GalleryContext = createContext<IGalleryContext | null>(null);
 
-export const GalleryProvider = GalleryContext.Provider
+export const GalleryProvider = GalleryContext.Provider;

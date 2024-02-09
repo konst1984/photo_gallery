@@ -1,5 +1,5 @@
 const Preloader = () => {
-    return <span className="loader"></span>
-}
+    return <span className="loader"></span>;
+};
 
-export default Preloader
+export default Preloader;

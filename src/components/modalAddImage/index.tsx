@@ -1,39 +1,39 @@
-import React, { FC } from 'react'
-import { nanoid } from 'nanoid'
+import React, { FC } from 'react';
+import { nanoid } from 'nanoid';
 
-import { addImage } from '../../api/api'
-import CloseIcon from '../../assets/icons/CloseIcon'
-import useGalleryContext from '../../hooks/useGalleryContext'
-import Modal from '../modal'
+import { addImage } from '../../api/api';
+import CloseIcon from '../../assets/icons/CloseIcon';
+import useGalleryContext from '../../context/useGalleryContext';
+import Modal from '../modal';
 
 interface IModalAddImage {
-    handleCloseModalClick: () => void
-    nameModal: string
+    handleCloseModalClick: () => void;
+    nameModal: string;
 }
 
 const ModalAddImage: FC<IModalAddImage> = ({
     handleCloseModalClick,
     nameModal,
 }) => {
-    const { setGalleryData } = useGalleryContext()
+    const { setGalleryData } = useGalleryContext();
     const handleImageSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
+        event.preventDefault();
 
-        const imageUrl = event.currentTarget['image-url'].value
+        const imageUrl = event.currentTarget['image-url'].value;
 
-        if (!imageUrl) return
+        if (!imageUrl) return;
 
         const imageObj = {
             id: nanoid(),
             slug: imageUrl,
             isSelected: false,
-        }
+        };
 
-        addImage(imageObj)
-        setGalleryData((prev) => [...prev, imageObj])
+        addImage(imageObj);
+        setGalleryData((prev) => [...prev, imageObj]);
 
-        handleCloseModalClick()
-    }
+        handleCloseModalClick();
+    };
 
     return (
         <Modal
@@ -72,7 +72,7 @@ const ModalAddImage: FC<IModalAddImage> = ({
                 </button>
             </>
         </Modal>
-    )
-}
+    );
+};
 
-export default ModalAddImage
+export default ModalAddImage;

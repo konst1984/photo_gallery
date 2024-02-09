@@ -1,27 +1,27 @@
-import { RefObject, useEffect, useRef } from 'react'
+import { RefObject, useEffect, useRef } from 'react';
 
 const useOutsideClick = (
     ref: RefObject<HTMLElement | null>,
     callback: () => void,
     state: boolean
 ) => {
-    const callbackRef = useRef(callback)
+    const callbackRef = useRef(callback);
 
     useEffect(() => {
-        callbackRef.current = callback
-    }, [callback])
+        callbackRef.current = callback;
+    }, [callback]);
 
     useEffect(() => {
         const handleCLick = (e: Event) => {
             if (ref.current && !ref.current.contains(e.target as HTMLElement)) {
-                setTimeout(() => callbackRef.current(), 300)
+                setTimeout(() => callbackRef.current(), 300);
             }
-        }
+        };
 
-        document.addEventListener('mousedown', handleCLick)
+        document.addEventListener('mousedown', handleCLick);
 
-        return () => document.removeEventListener('mousedown', handleCLick)
-    }, [state])
-}
+        return () => document.removeEventListener('mousedown', handleCLick);
+    }, [state]);
+};
 
-export default useOutsideClick
+export default useOutsideClick;

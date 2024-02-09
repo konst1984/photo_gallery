@@ -1,19 +1,18 @@
-import { FC, useState } from 'react'
-import { useSortable } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
+import { FC, useState } from 'react';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 
-import { ImageGalleryProps } from '../../data'
-import ImageZoom from '../ImageZoom/imageZoom'
-import ButtonSelectedImage from '../ui/buttonSelectedImage'
-import ButtonZoomImage from '../ui/buttonZoom'
+import { ImageGalleryProps } from '../../data';
+import ImageZoom from '../ImageZoom/imageZoom';
+import ButtonChangeBg from '../ui/buttonChangeBg';
+import ButtonSelectedImage from '../ui/buttonSelectedImage';
+import ButtonZoomImage from '../ui/buttonZoom';
 
 interface ImageCardProps extends ImageGalleryProps {
-    slug: string
+    slug: string;
 }
 
 const ImageCard: FC<ImageCardProps> = ({ slug, id, isSelected }) => {
-    const [zoom, setZoom] = useState<boolean>(false)
-
     const {
         attributes,
         listeners,
@@ -22,7 +21,10 @@ const ImageCard: FC<ImageCardProps> = ({ slug, id, isSelected }) => {
         transition,
         isDragging,
         index,
-    } = useSortable({ id: id })
+    } = useSortable({ id: id });
+
+    const [zoom, setZoom] = useState<boolean>(false);
+    const [slugBg, setSlugBg] = useState<string>('');
 
     const style = {
         transform: CSS.Transform.toString(transform),
@@ -30,7 +32,12 @@ const ImageCard: FC<ImageCardProps> = ({ slug, id, isSelected }) => {
         zIndex: isDragging ? '100' : 'auto',
         opacity: isDragging ? 0.3 : 1,
         transformOrigin: '0 0',
-    }
+    };
+
+    const handleSetZoomImage = (slug: string) => {
+        setZoom(true);
+        setSlugBg(slug);
+    };
 
     return (
         <>
@@ -47,13 +54,14 @@ const ImageCard: FC<ImageCardProps> = ({ slug, id, isSelected }) => {
                     className="absolute inset-0 z-50 bg-black opacity-0 transition-all duration-300 focus-visible:outline-amber-400 group-focus-within:opacity-40 group-hover:opacity-40"
                 />
                 <ButtonSelectedImage isSelected={isSelected} id={id} />
-                <ButtonZoomImage onClick={setZoom} />
+                <ButtonZoomImage onClick={() => handleSetZoomImage(slug)} />
                 <div
                     className={`relative flex h-full w-full animate-showOpacity items-center justify-center bg-gray-500 before:absolute before:bg-[url('/images/loading.webp')]${
                         isSelected && 'opacity-60'
                     }`}
                 >
                     <div className="absolute inset-0 -z-0 animate-showOpacity bg-[url('/images/loading.webp')] bg-cover bg-center bg-no-repeat invert dark:invert-0"></div>
+                    <ButtonChangeBg />
                     <img
                         src={slug}
                         alt=""
@@ -67,10 +75,11 @@ const ImageCard: FC<ImageCardProps> = ({ slug, id, isSelected }) => {
                     />
                 </div>
             </div>
-
-            <ImageZoom slug={slug} setZoom={setZoom} state={zoom} />
+            {slug === slugBg && (
+                <ImageZoom slug={slug} setZoom={setZoom} state={zoom} />
+            )}
         </>
-    )
-}
+    );
+};
 
-export default ImageCard
+export default ImageCard;

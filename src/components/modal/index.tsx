@@ -1,7 +1,7 @@
-import { cloneElement, FC, ReactElement, useEffect } from 'react'
-import { createPortal } from 'react-dom'
+import { cloneElement, FC, ReactElement, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
-import { setOverflowHidden } from '../../utils/setOverflowHidden'
+import { setOverflowHidden } from '../../utils/setOverflowHidden';
 
 type ModalProps = {
     children: ReactElement
@@ -17,19 +17,19 @@ export const Modal: FC<ModalProps> = ({
     handleClose,
     modalId,
 }) => {
-    const isOpen = modalId === nameModal
+    const isOpen = modalId === nameModal;
 
     useEffect(() => {
-        const isOpen = modalId === nameModal
-        setOverflowHidden('html', isOpen)
-    }, [isOpen])
+        const isOpen = modalId === nameModal;
+        setOverflowHidden('html', isOpen);
+    }, [isOpen]);
 
-    if (!isOpen) return null
+    if (!isOpen) return null;
 
     const stl = {
         '--bg-color': 'rgba(26, 23, 27, 0.8)',
         backdropFilter: 'blur(20px)',
-    }
+    };
 
     return (
         <>
@@ -49,7 +49,7 @@ export const Modal: FC<ModalProps> = ({
                 document.body
             )}
         </>
-    )
-}
+    );
+};
 
-export default Modal
+export default Modal;

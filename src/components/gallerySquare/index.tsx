@@ -1,38 +1,28 @@
-import { FC } from 'react'
-import { closestCenter,DndContext, DragOverlay } from '@dnd-kit/core'
-import { rectSortingStrategy,SortableContext } from '@dnd-kit/sortable'
+import { FC } from 'react';
+import { closestCenter, DndContext, DragOverlay } from '@dnd-kit/core';
 
-import useActionsDnD from '../../hooks/useActionDnd'
-import useGalleryContext from '../../hooks/useGalleryContext'
-import ImageCard from '../imageCard'
-import ImageOverlayCard from '../ImageOverlayCard'
-import Preloader from '../preloader'
+import useGalleryContext from '../../context/useGalleryContext';
+import useActionsDnD from '../../hooks/useActionDnd';
+import GalleryGrid from '../galleryGrid';
+import ImageOverlayCard from '../ImageOverlayCard';
+import Preloader from '../preloader';
+import ButtonClearBg from '../ui/buttonClearBg';
 
 const GallerySquare: FC = () => {
-    const {
-        galleryData,
-        setGalleryData,
-        setActiveItem,
-        isError,
-        isLoading,
-        activeItem,
-    } = useGalleryContext()
+    const { galleryData, isError, isLoading } = useGalleryContext();
 
-    const { handleDragEnd, handleDragStart, sensors } = useActionsDnD(
-        galleryData,
-        setGalleryData,
-        setActiveItem
-    )
+    const { activeItem, handleDragEnd, handleDragStart, sensors } =
+        useActionsDnD();
 
     if (isLoading) {
-        return <Preloader />
+        return <Preloader />;
     }
     if (isError) {
         return (
             <h1 className="text-clamp uppercase text-red-500">
                 Something went wrong!
             </h1>
-        )
+        );
     }
     return (
         <>
@@ -43,20 +33,10 @@ const GallerySquare: FC = () => {
                     onDragStart={handleDragStart}
                     onDragEnd={handleDragEnd}
                 >
-                    <div className="mx-auto mb-5 grid max-w-[90%] animate-showOpacity gap-8 rounded-2xl bg-secondary p-8 sm:grid-cols-2 md:grid-cols-5">
-                        <SortableContext
-                            items={galleryData}
-                            strategy={rectSortingStrategy}
-                        >
-                            {galleryData.map((imageItem) => (
-                                <ImageCard
-                                    key={imageItem.id}
-                                    slug={imageItem.slug}
-                                    id={imageItem.id}
-                                    isSelected={imageItem.isSelected}
-                                />
-                            ))}
-                        </SortableContext>
+                    <div className="relative mx-auto mb-5 grid max-w-[90%] animate-showOpacity gap-8 rounded-2xl bg-secondary p-8 sm:grid-cols-2 md:grid-cols-5">
+                        <ButtonClearBg />
+
+                        <GalleryGrid />
 
                         <DragOverlay adjustScale={true} wrapperElement="div">
                             {activeItem ? (
@@ -70,7 +50,7 @@ const GallerySquare: FC = () => {
                 </DndContext>
             ) : null}
         </>
-    )
-}
+    );
+};
 
-export default GallerySquare
+export default GallerySquare;

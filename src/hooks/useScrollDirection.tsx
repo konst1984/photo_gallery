@@ -1,35 +1,35 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
 function useScrollDirection() {
-    const [scrollDirection, setScrollDirection] = useState<string>('no-paint')
+    const [scrollDirection, setScrollDirection] = useState<string>('no-paint');
 
     useEffect(() => {
-        let lastScrollY = 80
+        let lastScrollY = 80;
 
         const updateScrollDirection = () => {
-            const currentScrollTop = window.scrollY
+            const currentScrollTop = window.scrollY;
 
-            const direction = lastScrollY > currentScrollTop ? 'show' : 'hide'
+            const direction = lastScrollY > currentScrollTop ? 'show' : 'hide';
 
             if (
                 currentScrollTop > lastScrollY &&
                 direction !== scrollDirection
             ) {
-                setScrollDirection('hide')
+                setScrollDirection('hide');
             } else if (currentScrollTop < 60) {
-                setScrollDirection('no-paint')
+                setScrollDirection('no-paint');
             } else {
-                setScrollDirection('show')
+                setScrollDirection('show');
             }
-            lastScrollY = currentScrollTop < 60 ? 60 : currentScrollTop
-        }
-        window.addEventListener('scroll', updateScrollDirection) // add event listener
+            lastScrollY = currentScrollTop < 60 ? 60 : currentScrollTop;
+        };
+        window.addEventListener('scroll', updateScrollDirection); // add event listener
         return () => {
-            window.removeEventListener('scroll', updateScrollDirection) // clean up
-        }
-    }, [])
+            window.removeEventListener('scroll', updateScrollDirection); // clean up
+        };
+    }, []);
 
-    return scrollDirection
+    return scrollDirection;
 }
 
-export default useScrollDirection
+export default useScrollDirection;
